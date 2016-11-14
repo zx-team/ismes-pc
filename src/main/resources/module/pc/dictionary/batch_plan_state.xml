@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category name="PCJH" label="批次计划状态代码">
+	<field value="10" label="未下发"/>
+	<field value="20" label="已下发"/>
+	<field value="30" label="计划制定中"/>
+	<field value="40" label="工单已生成"/>
+	<field value="50" label="工单部分下发"/>
+	<field value="60" label="工单全部下发"/>
+	<field value="70" label="加工中"/>
+	<field value="80" label="加工完成"/>
+	<field value="90" label="已终止"/>
+</category>

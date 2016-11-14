@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="pc" version="1.0.0" category="system">
+	<information>
+		<name>System User Management</name>
+		<vendor>
+			<name>Isesol isMES</name>
+			<url>http://www.isesol.com/</url>
+		</vendor>
+		<description>User is a module which adds user functionality to system.</description>
+		<license>AGPL</license>
+	</information>
+	<activities>
+		<activity name="sdbg" dialect="java" roles="WORKER_ROLE" class="com.isesol.mes.ismes.pc.activity.SdbgActivity"/>
+		<activity name="zlqr" dialect="java" roles="MANUFACTURING_MANAGEMENT_ROLE" class="com.isesol.mes.ismes.pc.activity.ZlqrActivity"/>
+		<activity name="service" dialect="java" class="com.isesol.mes.ismes.pc.service.ProduceControlService"/>
+		<activity name="bgls" dialect="java" class="com.isesol.mes.ismes.pc.service.BglsService"/>
+	</activities>
+	<roles>
+		<role name="WORKER_ROLE" label="普通工人_生产控制" description="手工报工、现场操作" />
+		<role name="MANUFACTURING_MANAGEMENT_ROLE" label="生产管理人员_生产控制" description="生产管理相关" />
+	</roles>
+	<menus>
+		<!-- 生产管理（一级） -->
+		<category name="produce_manager" label="生产管理" icon="#539de7;Production_management"  weight="4"/>
+		<menu name="manual_reportwork" label="手工报工" activity="sdbg" activity-method="query_sdbg" 
+ 			 category="produce_manager" roles="WORKER_ROLE" description="手工报工" icon="button" weight="20"/>
+ 		<menu name="quality_confirm" label="报工确认" activity="zlqr" activity-method="query_zlqr" 
+ 			 category="produce_manager" roles="MANUFACTURING_MANAGEMENT_ROLE" description="报工确认" icon="button" weight="30"/>		
+	</menus>
+	<services>
+		<service name = "queryservice_bgls" activity = "service" activity-method = "query_bglsb"/>
+		<service name = "pcservice_savebglsb" activity = "service" activity-method = "save_bglsb"/>
+		<service name = "pcservice_addBgls" activity = "bgls" activity-method = "saveBgls"/>
+		<service name = "pcservice_caculateProgress" activity = "zlqr" activity-method = "caculateProgress"/>
+		<service name = "pcservice_queryYbgsl" activity = "bgls" activity-method = "queryYbgsl"/>
+	</services>
+</module>
